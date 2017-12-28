@@ -3,7 +3,8 @@ import { Component, OnInit } from '@angular/core';
 interface User{
   id:number,
   name:string,
-  github:string,
+  email:string,
+  phone:string,
   sex:string
 }
 
@@ -17,16 +18,33 @@ export class StudentListComponent implements OnInit {
   constructor() {
     this.loadUsersData();
   }
+ 
   sortUsers(type){
     // 参考MDN中的ES6，Array语法
     // https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array
+    if(type == "asc"){
+      this.users.sort(function(a,b){
+        return a.id - b.id;
+      });
+    }else if(type == "desc"){
+      this.users.sort(function(a,b){
+        return b.id - a.id;
+      });
+    }else{
+      this.users.sort(function(a,b){
+        return Math.random()*10 - Math.random()*10;
+      });
+
+    }
     console.log("sortUsers Works!");
   }
   loadUsersData(){
     this.users = [
-      {id:1,name:"Ryane",github:"ryanemax",sex:"male"},
-      {id:2,name:"Liming",github:"liming",sex:"male"},
-      {id:3,name:"Xiaohong",github:"xiaohong",sex:"female"}
+      {id:1,name:"Ryane",email:"Ryane@accenture.com",phone:"18645678901",sex:"male"},
+      {id:2,name:"Jerry",email:"Jerry@accenture.com",phone:"186334378901",sex:"male"},
+      {id:3,name:"Bob",email:"Bob@accenture.com",phone:"186478078901",sex:"female"},
+      {id:4,name:"William",email:"William@accenture.com",phone:"18687978901",sex:"female"},
+      {id:5,name:"Frank",email:"Frank@accenture.com",phone:"18641788901",sex:"female"}
     ];
   }
   addNewUser(){
@@ -34,7 +52,8 @@ export class StudentListComponent implements OnInit {
     let newUser:User = {
       id:Number(uuid),
       name:"Jack",
-      github:"Jack",
+      email:"Jack@accenture.com",
+      phone:"136546789012",
       sex:"male"
     }
     this.users.push(newUser);
