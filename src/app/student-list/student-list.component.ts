@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 
-interface User{
+interface Org{
   id:number,
   name:string,
-  email:string,
-  phone:string,
-  sex:string
+  mgr:string,
+  description:string
+  
 }
 
 @Component({
@@ -14,53 +14,52 @@ interface User{
   styleUrls: ['./student-list.component.scss']
 })
 export class StudentListComponent implements OnInit {
-  users:Array<User>;
+  orgs:Array<Org>;
   constructor() {
-    this.loadUsersData();
+    this.loadOrgsData();
   }
  
-  sortUsers(type){
+  sortOrgs(type){
     // 参考MDN中的ES6，Array语法
     // https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array
     if(type == "asc"){
-      this.users.sort(function(a,b){
+      this.orgs.sort(function(a,b){
         return a.id - b.id;
       });
     }else if(type == "desc"){
-      this.users.sort(function(a,b){
+      this.orgs.sort(function(a,b){
         return b.id - a.id;
       });
     }else{
-      this.users.sort(function(a,b){
+      this.orgs.sort(function(a,b){
         return Math.random()*10 - Math.random()*10;
       });
 
     }
-    console.log("sortUsers Works!");
+    console.log("sorgOrgs Works!");
   }
-  loadUsersData(){
-    this.users = [
-      {id:1,name:"Ryane",email:"Ryane@accenture.com",phone:"18645678901",sex:"male"},
-      {id:2,name:"Jerry",email:"Jerry@accenture.com",phone:"186334378901",sex:"male"},
-      {id:3,name:"Bob",email:"Bob@accenture.com",phone:"186478078901",sex:"female"},
-      {id:4,name:"William",email:"William@accenture.com",phone:"18687978901",sex:"female"},
-      {id:5,name:"Frank",email:"Frank@accenture.com",phone:"18641788901",sex:"female"}
+  loadOrgsData(){
+    this.orgs = [
+      {id:1,name:"CMT",mgr:"Wang Bob",description:"Communication and Media Technology Industry"},
+      {id:2,name:"FS",mgr:"Yan Jerry",description:"Financials Industry"},
+      {id:3,name:"PRD",mgr:"Ding William",description:"Production Industry"},
+      {id:4,name:"HPS",mgr:"William@accenture.com",description:"Health and Public Service Industry"},
+      {id:5,name:"RES",mgr:"Hu Peter",description:"Resource Industry"}
     ];
   }
-  addNewUser(){
+  addNewOrg(){
     let uuid = Number(Math.random()*1000).toFixed(0);
-    let newUser:User = {
+    let newOrg:Org = {
       id:Number(uuid),
-      name:"Jack",
-      email:"Jack@accenture.com",
-      phone:"136546789012",
-      sex:"male"
+      name:"SAP",
+      mgr:"Huang, Jack",
+      description:"Communication and Media Technology"
     }
-    this.users.push(newUser);
+    this.orgs.push(newOrg);
   }
-  deleteUserByID(id){
-    this.users.forEach((user,index,arr)=>{
-      if(user.id==id){
+  deleteOrgByID(id){
+    this.orgs.forEach((org,index,arr)=>{
+      if(org.id==id){
         arr.splice(index,1);
       }
     })

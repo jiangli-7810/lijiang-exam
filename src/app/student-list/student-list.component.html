@@ -1,12 +1,12 @@
 <div id= "title"></div>
-<button (click)="sortUsers('asc')">Up</button>
-<button (click)="sortUsers('desc')" >Down</button>
-<button (click)="sortUsers('random')">Random</button>
-<button (click)="addNewUser()">New Student</button>
+<button (click)="sortOrgs('asc')">正序</button>
+<button (click)="sortOrgs('desc')" >倒序</button>
+<button (click)="sortOrgs('random')">随机</button>
+<button (click)="addNewOrg()">新建</button>
 
 <table width = "100%">
-  <thead><tr><th>ID</th><th>姓名</th><th>邮箱</th><th>手机</th><th>性别</th><th>操作</th></tr></thead>
+  <thead><tr><th>ID</th><th>名称</th><th>负责人</th><th>描述</th><th width=15%>操作</th></tr></thead>
   <tbody>
-  <tr *ngFor="let user of users"><td>{{user.id}}</td><td>{{user.name}}<td>{{user.email}}</td><td>{{user.phone}}</td><td>{{user.sex}}</td><td class="operationtd"><button (click)="deleteUserByID(user.id)">删除</button></td></tr>
+  <tr *ngFor="let org of orgs"><td>{{org.id}}</td><td>{{org.name}}<td>{{org.mgr}}</td><td>{{org.description}}</td><td class="operationtd"><button (click)="deleteOrgByID(org.id)">删除</button></td></tr>
 </tbody>
 </table>
